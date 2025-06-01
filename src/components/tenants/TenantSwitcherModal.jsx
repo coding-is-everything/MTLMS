@@ -4,8 +4,13 @@ import { XMarkIcon, CheckIcon, BuildingOffice2Icon } from '@heroicons/react/24/o
 import { Dialog, Transition } from '@headlessui/react';
 
 const TenantSwitcherModal = ({ isOpen, onClose }) => {
-    const { currentTenant, tenants = [], selectTenant } = useAuth();
+    const auth = useAuth();
     const [isSwitching, setIsSwitching] = useState(false);
+    
+    // Safely access properties with optional chaining and provide defaults
+    const currentTenant = auth?.currentTenant;
+    const tenants = auth?.tenants || [];
+    const selectTenant = auth?.selectTenant || (() => {});
 
     const handleSelectTenant = async (tenantUuid) => {
         if (tenantUuid === currentTenant?.uuid) {

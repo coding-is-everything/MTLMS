@@ -4,10 +4,15 @@ import TenantSwitcherModal from './TenantSwitcherModal';
 import { BuildingOffice2Icon, ChevronDownIcon } from '@heroicons/react/24/outline';
 
 const TenantSelector = () => {
-    const { currentTenant, tenants } = useAuth();
+    const auth = useAuth();
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    if (!currentTenant || tenants.length <= 1) return null;
+    // Safely access properties with optional chaining and provide defaults
+    const currentTenant = auth?.currentTenant;
+    const tenants = auth?.tenants || [];
+
+    // Don't render if auth context isn't ready or user doesn't have multiple tenants
+    if (!auth || !currentTenant || tenants.length <= 1) return null;
 
     return (
         <>
