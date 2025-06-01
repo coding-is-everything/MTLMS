@@ -6,7 +6,7 @@ import {
     CalendarIcon,
     DocumentTextIcon,
     CogIcon,
-    LogoutIcon
+    ArrowLeftOnRectangleIcon
 } from '@heroicons/react/24/outline';
 
 const Sidebar = () => {
@@ -16,7 +16,7 @@ const Sidebar = () => {
         { name: 'Calendar', icon: CalendarIcon, path: '/calendar' },
         { name: 'Documents', icon: DocumentTextIcon, path: '/documents' },
         { name: 'Settings', icon: CogIcon, path: '/settings' },
-        { name: 'Logout', icon: LogoutIcon, path: '/logout' }
+        { name: 'Logout', icon: ArrowLeftOnRectangleIcon, path: '/logout' }
     ];
 
     return (
@@ -41,9 +41,7 @@ const Sidebar = () => {
                     </NavLink>
                 ))}
             </nav>
-            <div className="p-4 border-t border-gray-700">
-                <TenantSelector />
-            </div>
+            {/* Tenant Selector removed - Component not defined */}
         </div>
     );
 };
