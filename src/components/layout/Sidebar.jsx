@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import TenantSelector from '../tenants/TenantSelector';
 import {
     BriefcaseIcon,
     UserGroupIcon,
@@ -41,7 +42,9 @@ const Sidebar = () => {
                     </NavLink>
                 ))}
             </nav>
-            {/* Tenant Selector removed - Component not defined */}
+            <div className="p-4 border-t border-gray-700">
+                <TenantSelector />
+            </div>
         </div>
     );
 };
