@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
     Box,
     Button,
     TextField,
     Typography,
-    Link,
     Divider,
     Alert
 } from '@mui/material';
@@ -66,8 +65,10 @@ export default function LoginForm() {
             />
 
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', mt: 1 }}>
-                <Link href="/forgot-password" variant="body2">
-                    Forgot Password?
+                <Link to="/forgot-password" style={{ textDecoration: 'none' }}>
+                    <Typography variant="body2" color="primary">
+                        Forgot Password?
+                    </Typography>
                 </Link>
             </Box>
 
@@ -86,8 +87,10 @@ export default function LoginForm() {
             <Box sx={{ textAlign: 'center', mt: 2 }}>
                 <Typography variant="body2">
                     Don't have an account?{' '}
-                    <Link href="/register" variant="body2">
-                        Request Access
+                    <Link to="/register" style={{ textDecoration: 'none' }}>
+                        <Typography component="span" color="primary" variant="body2">
+                            Request Access
+                        </Typography>
                     </Link>
                 </Typography>
             </Box>
