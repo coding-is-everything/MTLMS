@@ -9,7 +9,10 @@ import {
     Alert,
     Grid,
     InputAdornment,
-    IconButton
+    IconButton,
+    LinearProgress,
+    FormControlLabel,
+    Checkbox
 } from '@mui/material';
 import {
     Email,
@@ -36,8 +39,39 @@ export default function RegistrationForm() {
     });
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
+    const [passwordStrength, setPasswordStrength] = useState(0);
     const navigate = useNavigate();
     const { register } = useAuth();
+
+    const calculatePasswordStrength = (password) => {
+        let strength = 0;
+        
+        // Length check
+        if (password.length >= 8) strength += 25;
+        
+        // Contains numbers
+        if (/\d/.test(password)) strength += 25;
+        
+        // Contains lowercase and uppercase
+        if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength += 25;
+        
+        // Contains special characters
+        if (/[^A-Za-z0-9]/.test(password)) strength += 25;
+        
+        return Math.min(strength, 100);
+    };
+    
+    const handlePasswordChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        
+        if (name === 'password') {
+            setPasswordStrength(calculatePasswordStrength(value));
+        }
+    };
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -148,7 +182,7 @@ export default function RegistrationForm() {
                 type={formData.showPassword ? 'text' : 'password'}
                 name="password"
                 value={formData.password}
-                onChange={handleChange}
+                onChange={handlePasswordChange}
                 required
                 InputProps={{
                     startAdornment: <Lock sx={{ color: 'action.active', mr: 1 }} />,
@@ -163,6 +197,15 @@ export default function RegistrationForm() {
                         </InputAdornment>
                     )
                 }}
+            />
+            <LinearProgress 
+                variant="determinate" 
+                value={passwordStrength} 
+                color={
+                    passwordStrength < 30 ? 'error' : 
+                    passwordStrength < 70 ? 'warning' : 'success'
+                } 
+                sx={{ mt: 0.5, height: 4 }}
             />
 
             <TextField
@@ -179,14 +222,24 @@ export default function RegistrationForm() {
                 }}
             />
 
+            <FormControlLabel
+                control={<Checkbox required />}
+                label={
+                    <Typography variant="body2">
+                        I agree to the <Link href="#">Terms of Service</Link> and <Link href="#">Privacy Policy</Link>
+                    </Typography>
+                }
+                sx={{ mt: 2, width: '100%' }}
+            />
+
             <Button
                 fullWidth
                 type="submit"
                 variant="contained"
                 disabled={loading}
-                sx={{ mt: 3, mb: 2, py: 1.5 }}
+                sx={{ mt: 2, mb: 2, py: 1.5 }}
             >
-                {loading ? 'Creating Account...' : 'Creating Account'}
+                {loading ? 'Creating Account...' : 'Create Account'}
             </Button>
 
             <Divider sx={{ my: 2 }}>OR</Divider>
