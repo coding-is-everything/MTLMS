@@ -14,6 +14,7 @@ const ResendVerificationPage = lazy(() => import('./features/auth/pages/ResendVe
 const MfaSetupPage = lazy(() => import('./features/auth/pages/MfaSetupPage'));
 const MfaVerifyPage = lazy(() => import('./features/auth/pages/MfaVerifyPage'));
 const MfaRecoveryPage = lazy(() => import('./features/auth/pages/MfaRecoveryPage'));
+const SettingsPage = lazy(() => import('./features/settings/pages/SettingsPage'));
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -30,6 +31,10 @@ function AppContent() {
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/verify-email" element={<EmailVerificationPage />} />
       <Route path="/resend-verification" element={<ResendVerificationPage />} />
+      <Route path="/mfa-setup" element={<MfaSetupPage />} />
+      <Route path="/mfa-verify" element={<MfaVerifyPage />} />
+      <Route path="/mfa-recovery" element={<MfaRecoveryPage />} />
+      <Route path="/settings" element={<SettingsPage />} />
       <Route
         path="/"
         element={
