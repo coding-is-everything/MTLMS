@@ -75,12 +75,48 @@ export const AuthProvider = ({ children }) => {
     console.log('Refreshing tenant data...');
   };
   
+  const login = async (email, password) => {
+    try {
+      const response = await api.post('/auth/login', { email, password });
+      const { user, token, tenant } = response.data;
+      
+      // Update user and tenant state
+      setCurrentUser(user);
+      setCurrentTenant(tenant);
+      
+      // Store token in localStorage
+      localStorage.setItem('token', token);
+      
+      // Set auth header for future requests
+      api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+      
+      return response.data;
+    } catch (error) {
+      console.error('Login failed:', error);
+      throw error;
+    }
+  };
+
+  const logout = () => {
+    // Clear user and tenant state
+    setCurrentUser(null);
+    setCurrentTenant(null);
+    
+    // Remove token from localStorage
+    localStorage.removeItem('token');
+    
+    // Remove auth header
+    delete api.defaults.headers.common['Authorization'];
+  };
+
   const value = {
     currentUser,
     currentTenant,
     tenants,
     loading,
     selectTenant,
+    login,
+    logout,
     api,
   };
 

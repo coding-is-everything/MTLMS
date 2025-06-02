@@ -1,7 +1,9 @@
 import React from 'react';
-import { MagnifyingGlassIcon, BellIcon } from '@heroicons/react/24/outline';
+import { MagnifyingGlassIcon, BellIcon, ArrowRightOnRectangleIcon } from '@heroicons/react/24/outline';
+import { useAuth } from '../../features/auth/hooks/useAuth';
 
 const TopBar = () => {
+    const { logout } = useAuth();
     return (
         <header className="bg-white shadow-sm">
             <div className="flex items-center justify-between px-6 py-4">
@@ -25,9 +27,16 @@ const TopBar = () => {
                         <BellIcon className="h-6 w-6" />
                     </button>
                     <div className="ml-4 flex items-center">
-                        <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center">
+                        <div className="h-8 w-8 rounded-full bg-gray-300 flex items-center justify-center mr-3">
                             <span className="text-gray-600 font-medium">U</span>
                         </div>
+                        <button
+                            onClick={logout}
+                            className="p-1 rounded-full text-gray-400 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary-500"
+                            title="Logout"
+                        >
+                            <ArrowRightOnRectangleIcon className="h-5 w-5" />
+                        </button>
                     </div>
                 </div>
             </div>

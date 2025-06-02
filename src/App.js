@@ -4,6 +4,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import DashboardLayout from './components/layout/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import CaseList from './pages/Cases/CaseList';
+import LoginPage from './features/auth/pages/LoginPage';
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -14,7 +15,7 @@ const ProtectedRoute = ({ children }) => {
 function AppContent() {
   return (
     <Routes>
-      <Route path="/login" element={<div>Login Page</div>} />
+      <Route path="/login" element={<LoginPage />} />
       <Route
         path="/"
         element={
