@@ -8,6 +8,7 @@ import CaseList from './pages/Cases/CaseList';
 import LoginPage from './features/auth/pages/LoginPage';
 import ForgotPasswordPage from './features/auth/pages/ForgotPasswordPage';
 import RegisterPage from './features/auth/pages/RegisterPage';
+import ResetPasswordPage from './features/auth/pages/ResetPasswordPage';
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -21,6 +22,7 @@ function AppContent() {
       <Route path="/login" element={<LoginPage />} />
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/register" element={<RegisterPage />} />
+      <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route
         path="/"
         element={
