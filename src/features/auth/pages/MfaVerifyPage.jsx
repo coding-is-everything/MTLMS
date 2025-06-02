@@ -1,7 +1,7 @@
-import { Container, Grid, Box, Paper, Typography } from '@mui/material';
+import { Container, Grid, Box, Paper, Typography, Button } from '@mui/material';
 import MfaVerifyForm from '../components/MfaVerifyForm';
 import { useLocation } from 'react-router-dom';
-import { useTenant } from '../../../contexts/TenantContext';
+import { useTenant } from '../../../context/TenantContext';
 
 export default function MfaVerifyPage() {
   const location = useLocation();

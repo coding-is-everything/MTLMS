@@ -1,6 +1,6 @@
-import { Container, Grid, Box } from '@mui/material';
+import { Container, Grid, Box, Typography } from '@mui/material';
 import MfaSetupCard from '../components/MfaSetupCard';
-import { useTenant } from '../../../contexts/TenantContext';
+import { useTenant } from '../../../context/TenantContext';
 
 export default function MfaSetupPage() {
   const { tenant } = useTenant();

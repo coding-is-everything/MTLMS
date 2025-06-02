@@ -1,6 +1,6 @@
 import { Container, Grid, Box, Paper, Typography } from '@mui/material';
 import MfaRecoveryForm from '../components/MfaRecoveryForm';
-import { useTenant } from '../../../contexts/TenantContext';
+import { useTenant } from '../../../context/TenantContext';
 
 export default function MfaRecoveryPage() {
   const { tenant } = useTenant();

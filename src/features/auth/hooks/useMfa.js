@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { useAuth } from './useAuth';
-import { useNavigate } from 'react-router.dom';
+import { useNavigate } from 'react-router-dom';
 
 export function useMfa() {
     const [loading, setLoading] = useState(false);

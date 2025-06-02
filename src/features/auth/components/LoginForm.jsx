@@ -25,8 +25,17 @@ export default function LoginForm() {
         setError('');
 
         try {
-            await login(email, password);
-            navigate('/dashboard');
+            const result = await login(email, password);
+            
+            // Check if MFA verification is required
+            if (result && result.requiresMfa) {
+                navigate('/mfa-verify', { 
+                    state: { loginToken: result.loginToken } 
+                });
+            } else {
+                // Proceed with normal login
+                navigate('/dashboard');
+            }
         } catch (err) {
             setError(err.message || 'Login failed, Please try again.');
         } finally {

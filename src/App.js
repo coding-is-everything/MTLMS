@@ -11,6 +11,9 @@ import RegisterPage from './features/auth/pages/RegisterPage';
 import ResetPasswordPage from './features/auth/pages/ResetPasswordPage';
 const EmailVerificationPage = lazy(() => import('./features/auth/pages/EmailVerificationPage'));
 const ResendVerificationPage = lazy(() => import('./features/auth/pages/ResendVerificationPage'));
+const MfaSetupPage = lazy(() => import('./features/auth/pages/MfaSetupPage'));
+const MfaVerifyPage = lazy(() => import('./features/auth/pages/MfaVerifyPage'));
+const MfaRecoveryPage = lazy(() => import('./features/auth/pages/MfaRecoveryPage'));
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
