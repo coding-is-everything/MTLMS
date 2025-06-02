@@ -1,4 +1,4 @@
-import { Container, Paper, Box, Typography } from '@mui/material';
+import { Container, Paper, Typography } from '@mui/material';
 import SecuritySettings from '../components/SecuritySettings';
 
 export default function SettingsPage() {

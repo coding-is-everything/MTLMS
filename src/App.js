@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { TenantProvider } from './context/TenantContext';
+import { TourProvider } from './features/onboarding';
 import DashboardLayout from './components/layout/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import CaseList from './pages/Cases/CaseList';
@@ -55,7 +56,9 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <TenantProvider>
-          <AppContent />
+          <TourProvider>
+            <AppContent />
+          </TourProvider>
         </TenantProvider>
       </AuthProvider>
     </BrowserRouter>
