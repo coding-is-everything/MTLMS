@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { TenantProvider } from './context/TenantContext';
@@ -9,6 +9,8 @@ import LoginPage from './features/auth/pages/LoginPage';
 import ForgotPasswordPage from './features/auth/pages/ForgotPasswordPage';
 import RegisterPage from './features/auth/pages/RegisterPage';
 import ResetPasswordPage from './features/auth/pages/ResetPasswordPage';
+const EmailVerificationPage = lazy(() => import('./features/auth/pages/EmailVerificationPage'));
+const ResendVerificationPage = lazy(() => import('./features/auth/pages/ResendVerificationPage'));
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -23,6 +25,8 @@ function AppContent() {
       <Route path="/forgot-password" element={<ForgotPasswordPage />} />
       <Route path="/register" element={<RegisterPage />} />
       <Route path="/reset-password" element={<ResetPasswordPage />} />
+      <Route path="/verify-email" element={<EmailVerificationPage />} />
+      <Route path="/resend-verification" element={<ResendVerificationPage />} />
       <Route
         path="/"
         element={

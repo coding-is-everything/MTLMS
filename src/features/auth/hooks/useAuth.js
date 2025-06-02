@@ -58,12 +58,33 @@ export function useAuth() {
         navigate('/login');
     };
 
+    //Add these function to your existing useAuth hook
+    const verifyEmail = async (token) => {
+        const response = await axios.post('/api/auth/verify-email', { token });
+
+        if (!response.data.success) {
+            throw new Error(response.data.message || 'Email verification failed.');
+        }
+
+        setUser(prev => ({ ...prev, emailVerified: true }));
+    };
+
+    const resendVerificationEmail = async (email) => {
+        const response = await axios.post('/api/auth/resend-verification', { email });
+
+        if (!response.data.success) {
+            throw new Error(response.data.message || 'Failed to resend verification email.');
+        }
+    };
+
     return { 
         user: user || auth.currentUser, 
         login, 
         logout,
         register,
         resetPassword,
+        verifyEmail,
+        resendVerificationEmail,
         currentTenant: tenant
     };
 }
