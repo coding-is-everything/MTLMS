@@ -41,6 +41,17 @@ export function useAuth() {
         }
     };
 
+    const resetPassword = async (token, newPassword) => {
+        const response = await axios.post('/api/auth/reset-password', {
+            token,
+            newPassword
+        });
+
+        if (!response.data.success) {
+            throw new Error(response.data.message || 'Password reset failed.');
+        }
+    };
+
     const logout = () => {
         localStorage.removeItem('token');
         setUser(null);
@@ -52,6 +63,7 @@ export function useAuth() {
         login, 
         logout,
         register,
+        resetPassword,
         currentTenant: tenant
     };
 }
