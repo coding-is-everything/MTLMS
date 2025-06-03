@@ -2,6 +2,7 @@ import React, { lazy } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { TenantProvider } from './context/TenantContext';
+import { TourProvider } from './features/onboarding';
 import DashboardLayout from './components/layout/DashboardLayout';
 import Dashboard from './pages/Dashboard';
 import CaseList from './pages/Cases/CaseList';
@@ -11,6 +12,10 @@ import RegisterPage from './features/auth/pages/RegisterPage';
 import ResetPasswordPage from './features/auth/pages/ResetPasswordPage';
 const EmailVerificationPage = lazy(() => import('./features/auth/pages/EmailVerificationPage'));
 const ResendVerificationPage = lazy(() => import('./features/auth/pages/ResendVerificationPage'));
+const MfaSetupPage = lazy(() => import('./features/auth/pages/MfaSetupPage'));
+const MfaVerifyPage = lazy(() => import('./features/auth/pages/MfaVerifyPage'));
+const MfaRecoveryPage = lazy(() => import('./features/auth/pages/MfaRecoveryPage'));
+const SettingsPage = lazy(() => import('./features/settings/pages/SettingsPage'));
 
 // Protected route component
 const ProtectedRoute = ({ children }) => {
@@ -27,6 +32,10 @@ function AppContent() {
       <Route path="/reset-password" element={<ResetPasswordPage />} />
       <Route path="/verify-email" element={<EmailVerificationPage />} />
       <Route path="/resend-verification" element={<ResendVerificationPage />} />
+      <Route path="/mfa-setup" element={<MfaSetupPage />} />
+      <Route path="/mfa-verify" element={<MfaVerifyPage />} />
+      <Route path="/mfa-recovery" element={<MfaRecoveryPage />} />
+      <Route path="/settings" element={<SettingsPage />} />
       <Route
         path="/"
         element={
@@ -47,7 +56,9 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <TenantProvider>
-          <AppContent />
+          <TourProvider>
+            <AppContent />
+          </TourProvider>
         </TenantProvider>
       </AuthProvider>
     </BrowserRouter>

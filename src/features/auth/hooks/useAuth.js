@@ -17,6 +17,16 @@ export function useAuth() {
                 password,
                 tenantId: tenant?.id
             });
+            
+            // If MFA is required, return the login token without setting the auth token
+            if (response.data.requiresMfa) {
+                return {
+                    requiresMfa: true,
+                    loginToken: response.data.loginToken
+                };
+            }
+            
+            // If no MFA required, proceed with normal login
             setUser(response.data.user);
             localStorage.setItem('token', response.data.token);
             return response.data;

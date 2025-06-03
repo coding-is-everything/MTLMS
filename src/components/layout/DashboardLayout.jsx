@@ -1,11 +1,13 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import { WelcomeTour } from '../../features/onboarding';
 import Sidebar from './Sidebar';
 import TopBar from './TopBar';
 
 const DashboardLayout = () => {
     return (
         <div className="flex h-screen bg-gray-50">
+            <WelcomeTour />
             <Sidebar />
             <div className="flex flex-col flex-1 overflow-hidden">
                 <TopBar />
